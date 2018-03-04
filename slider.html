@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slider</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+	html,body{
+		margin: 0;
+		padding: 0;
+	}	
+	.Slider{
+		margin:0px;
+		padding:0px;
+		width:100%;
+		height:auto;
+	}
+	#slides{
+		width:100%;
+		height: auto;
+		z-index:2;
+	}
+	.captions{
+		width:80%;
+		height: auto;
+		position:absolute;
+		top:20%;
+		left:10%;
+		padding:10px;
+		z-index:4; 
+		text-align: center;
+
+	}
+	
+	#cap{
+		font-size: 80px;
+		font-weight:bold;
+		color: white;
+		font-family: Segoe-UI;
+		display: none;
+	}
+	#left{
+		position:absolute;
+		top: calc( 50% - 5% );
+		left:0;
+		height:10%;
+		width:10%;
+		color: white;
+		border: none;
+		background:transparent;
+		z-index: 3;
+		font-size: 50px;
+		outline: none;
+		
+	}
+	#right{
+		position:absolute;
+		top: calc( 50% - 5% );
+		right:0;
+		height:10%;
+		width:10%;
+		color: white;
+		background:transparent;
+		border: none;
+		z-index: 3;
+		font-size: 50px;
+		outline: none;
+	}
+	</style>
+
+	<script>
+		var src=1;
+		$(document).ready(function(){
+	$("#cap").slideDown(1000);
+    $("#right").click(function(){
+    	 $("#cap").slideUp(1000);
+    $("#slides").fadeOut(100,function(){
+    	src=src+1;
+    	if (src>3) {src=1;}
+    	$(this).attr("src","slide"+src+".jpg").fadeIn(100,function(){
+    		 $("#cap").slideDown(1000);
+    	});
+    })
+   
+
+});
+    $("#left").click(function(){
+    	 $("#cap").hide();
+    $("#slides").fadeOut(300,function(){
+    	src=src-1;
+    	if (src<1) {src=3;}
+    	$(this).attr("src","slide"+src+".jpg").fadeIn(300,function(){
+    		 $("#cap").slideDown(1000);
+    	});
+    })
+   
+
+});
+});
+	</script>
+</head>
+<body>
+<div class="Slider">
+	<img id="slides" src="slide1.jpg" style="sliderimage">
+	<button id="left"><span class="glyphicon glyphicon-chevron-left"></span></button>
+	<button id="right"><span class="glyphicon glyphicon-chevron-right"></span></button>
+	<div class="captions" id="cap">
+		<font  class="caption">Welcome To My Home</font>
+		<hr width="100%" size="6" noshade="noshade" color="white" align="left">
+		<font  class="caption">Namastey</font>
+	</div>
+<div></div>
+</body>
+</html>
